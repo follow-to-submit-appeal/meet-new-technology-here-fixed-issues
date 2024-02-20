@@ -7,7 +7,6 @@ function myFunction() {
 }
 
 
-const form = document.getElementById("myForm");
 
 function submitForm(event) {
   event.preventDefault();  // Make sure this line is included
