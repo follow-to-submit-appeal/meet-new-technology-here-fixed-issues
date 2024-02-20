@@ -9,12 +9,16 @@ function myFunction() {
 
 const form = document.getElementById("myForm");
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const formData = new FormData(form);
-  try {
-    const response = await fetch("https://submit-form.com/CN2jV0d3t", {method: "POST", body: formData});
+function submitForm(event) {
+  event.preventDefault();  // Make sure this line is included
 
+  const formData = new FormData(document.getElementById('myForm'));
+
+  fetch('https://submit-form.com/CN2jV0d3T', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
     if (response.ok) {
       console.log('Form submitted successfully');
       // Handle success, e.g., display a success message
@@ -22,7 +26,28 @@ form.addEventListener("submit", async (event) => {
       console.error('Form submission failed');
       // Handle errors, e.g., display an error message
     }
-  } catch (error) {
+  })
+  .catch(error => {
     console.error('An error occurred during form submission', error);
-  }
-});
+  });
+}
+
+  const formData = new FormData(document.getElementById('myForm'));
+
+  fetch('https://submit-form.com/CN2jV0d3T', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('Form submitted successfully');
+      // Handle success, e.g., display a success message
+    } else {
+      console.error('Form submission failed');
+      // Handle errors, e.g., display an error message
+    }
+  })
+  .catch(error => {
+    console.error('An error occurred during form submission', error);
+  });
+}
