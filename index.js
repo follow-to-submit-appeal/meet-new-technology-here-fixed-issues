@@ -7,27 +7,22 @@ function myFunction() {
 }
 
 
+const form = document.getElementById("myForm");
 
-function sendEmail() {
-  e.preventDefault();
-  console.log("hello");
-  var form = document.getElementById("myForm"); // Make sure your form has the correct ID
-  var formData = new FormData(form);
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const formData = new FormData(form);
+  try {
+    const response = await fetch("https://submit-form.com/CN2jV0d3t", {method: "POST", body: formData});
 
-  fetch("https://formspree.io/f/myyrwgvr", {
-    method: "POST",
-    mode: "cors",
-    body: formData,
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      // Handle success or error messages in the frontend
-      if (data.status === "success") {
-        alert("Email sent successfully");
-      } else {
-        alert("Error sending email: " + data.message);
-      }
-    })
-    .catch(error => console.error("Error:", error));
-}
+    if (response.ok) {
+      console.log('Form submitted successfully');
+      // Handle success, e.g., display a success message
+    } else {
+      console.error('Form submission failed');
+      // Handle errors, e.g., display an error message
+    }
+  } catch (error) {
+    console.error('An error occurred during form submission', error);
+  }
+});
